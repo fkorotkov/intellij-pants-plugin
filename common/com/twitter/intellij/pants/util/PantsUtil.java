@@ -5,6 +5,9 @@ package com.twitter.intellij.pants.util;
 
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.GeneralCommandLine;
+import com.intellij.execution.process.CapturingProcessHandler;
+import com.intellij.execution.process.ProcessAdapter;
+import com.intellij.execution.process.ProcessOutput;
 import com.intellij.execution.process.ScriptRunnerUtil;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.diagnostic.Logger;
@@ -484,5 +487,17 @@ public class PantsUtil {
         FileUtil.copyDir(child, target, false);
       }
     }
+  }
+
+  public static ProcessOutput getCmdOutput(
+    @NotNull GeneralCommandLine command,
+    @Nullable ProcessAdapter processAdapter
+  ) throws ExecutionException {
+    final Process process = command.createProcess();
+    final CapturingProcessHandler processHandler = new CapturingProcessHandler(process);
+    if (processAdapter != null) {
+      processHandler.addProcessListener(processAdapter);
+    }
+    return processHandler.runProcess();
   }
 }
