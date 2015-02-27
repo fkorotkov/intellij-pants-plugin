@@ -132,9 +132,9 @@ public abstract class PantsIntegrationTestCase extends ExternalSystemImportingTe
 
   private void cleanProjectRoot() {
     // work around copyDirContent's copying of symlinks as hard links causing pants to fail
-    FileUtil.delete(new File(myProjectRoot.getPath() + "/.pants.d"));
+    assertTrue("Failed to clean up!", FileUtil.delete(new File(myProjectRoot.getPath() + "/.pants.d")));
     // and IJ data
-    FileUtil.delete(new File(myProjectRoot.getPath() + "/.idea"));
+    assertTrue("Failed to clean up!", FileUtil.delete(new File(myProjectRoot.getPath() + "/.idea")));
     final File projectDir = new File(myProjectRoot.getPath());
     if (!needToCopyProjectToTempDir && projectDir.exists()) {
       for (File file : getProjectFoldersToCopy()) {
