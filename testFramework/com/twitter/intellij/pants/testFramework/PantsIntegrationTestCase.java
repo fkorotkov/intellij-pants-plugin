@@ -4,6 +4,7 @@
 package com.twitter.intellij.pants.testFramework;
 
 import com.intellij.compiler.impl.ModuleCompileScope;
+import com.intellij.execution.ExecutionException;
 import com.intellij.ide.plugins.IdeaPluginDescriptor;
 import com.intellij.ide.plugins.PluginManager;
 import com.intellij.ide.plugins.PluginManagerCore;
@@ -37,6 +38,7 @@ import com.intellij.util.ArrayUtil;
 import com.twitter.intellij.pants.settings.PantsProjectSettings;
 import com.twitter.intellij.pants.settings.PantsSettings;
 import com.twitter.intellij.pants.util.PantsConstants;
+import com.twitter.intellij.pants.util.PantsUtil;
 import org.intellij.lang.annotations.Language;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
@@ -126,17 +128,18 @@ public abstract class PantsIntegrationTestCase extends ExternalSystemImportingTe
         fail("invalid template project path " + projectTemplateFolder.getAbsolutePath());
       }
 
-      FileUtil.copyDirContent(projectTemplateFolder, projectDir);
+      PantsUtil.copyDirContent(projectTemplateFolder, projectDir);
     }
   }
 
-  private void cleanProjectRoot() {
+  private void cleanProjectRoot() throws ExecutionException {
+    final File projectDir = new File(myProjectRoot.getPath());
+    assertTrue(projectDir.exists());
     // work around copyDirContent's copying of symlinks as hard links causing pants to fail
     assertTrue("Failed to clean up!", FileUtil.delete(new File(myProjectRoot.getPath() + "/.pants.d")));
     // and IJ data
-    assertTrue("Failed to clean up!", FileUtil.delete(new File(myProjectRoot.getPath() + "/.idea")));
-    final File projectDir = new File(myProjectRoot.getPath());
-    if (!needToCopyProjectToTempDir && projectDir.exists()) {
+    assertTrue("Failed to clean up!", FileUtil.delete(new File(projectDir, ".idea")));
+    if (!needToCopyProjectToTempDir) {
       for (File file : getProjectFoldersToCopy()) {
         final File[] children = file.listFiles();
         if (children == null) {
