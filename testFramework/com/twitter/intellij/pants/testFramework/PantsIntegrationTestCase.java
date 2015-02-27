@@ -55,7 +55,7 @@ import java.util.List;
 
 /**
  * If your integration test modifies any source files
- * please set {@link PantsIntegrationTestCase#readOnly} to true.
+ * please set {@link PantsIntegrationTestCase#readOnly} to false.
  *
  * @see com.twitter.intellij.pants.highlighting.PantsHighlightingIntegrationTest
  */
@@ -149,8 +149,8 @@ public abstract class PantsIntegrationTestCase extends ExternalSystemImportingTe
         }
       }
     } else {
-      cmd("git", "clean", "-fdx");
       cmd("git", "reset", "--hard");
+      cmd("git", "clean", "-fdx");
     }
   }
 
