@@ -6,7 +6,7 @@ package com.twitter.intellij.pants.integration;
 import com.twitter.intellij.pants.testFramework.OSSPantsIntegrationTest;
 
 public class OSSPantsJavaExamplesIntegrationTest extends OSSPantsIntegrationTest {
-  public void testAnnotation() throws Throwable {
+/*  public void testAnnotation() throws Throwable {
     doImport("examples/src/java/com/pants/examples/annotation/main");
 
     assertModules(
@@ -144,5 +144,16 @@ public class OSSPantsJavaExamplesIntegrationTest extends OSSPantsIntegrationTest
         "intellij-integration_src_java_com_pants_testproject_excludes2_excludes2"
       )
     );
+  }*/
+
+  public void testResources1() throws Throwable {
+    // test if we handle resources with '.' in path and don't override resources
+    doImport("intellij-integration/src/java/com/pants/testproject/resources1");
+
+    assertModules(
+      "intellij-integration_src_java_com_pants_testproject_resources1_resources1"
+    );
+
+    makeModules("intellij-integration_src_java_com_pants_testproject_resources1_resources1");
   }
 }
