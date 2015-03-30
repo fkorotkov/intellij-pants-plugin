@@ -10,7 +10,7 @@ import org.jetbrains.jps.model.JpsElementChildRole;
 import org.jetbrains.jps.model.ex.JpsElementChildRoleBase;
 
 public interface JpsPantsModuleExtension extends JpsElement {
-  public static final JpsElementChildRole<JpsPantsModuleExtension> ROLE = JpsElementChildRoleBase.create(PantsConstants.PANTS);
+  JpsElementChildRole<JpsPantsModuleExtension> ROLE = JpsElementChildRoleBase.create(PantsConstants.PANTS);
 
   @NotNull
   String getTargetAddress();
