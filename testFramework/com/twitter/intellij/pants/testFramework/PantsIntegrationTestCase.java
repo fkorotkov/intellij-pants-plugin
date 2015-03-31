@@ -289,7 +289,7 @@ public abstract class PantsIntegrationTestCase extends ExternalSystemImportingTe
           break;
       }
     }
-    return ContainerUtil.map(
+    final List<String> rawMessages = ContainerUtil.map(
       messages,
       new Function<CompilerMessage, String>() {
         @Override
@@ -298,6 +298,10 @@ public abstract class PantsIntegrationTestCase extends ExternalSystemImportingTe
         }
       }
     );
+    final String noChanges = "pants: No changes to compile.";
+    final String compiledSuccessfully = "pants: SUCCESS";
+    assertTrue("Compilation wasn't successful!", rawMessages.contains(noChanges) || rawMessages.contains(compiledSuccessfully));
+    return rawMessages;
   }
 
   protected List<CompilerMessage> compileAndGetMessages(Module... modules) throws Exception {

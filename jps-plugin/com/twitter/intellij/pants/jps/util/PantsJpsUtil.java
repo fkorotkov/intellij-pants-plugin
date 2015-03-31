@@ -8,6 +8,7 @@ import com.intellij.util.Function;
 import com.intellij.util.containers.ContainerUtil;
 import com.twitter.intellij.pants.jps.incremental.model.JpsPantsModuleExtension;
 import com.twitter.intellij.pants.jps.incremental.serialization.PantsJpsModelSerializerExtension;
+import com.twitter.intellij.pants.util.PantsConstants;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.jps.model.module.JpsModule;
 
@@ -16,7 +17,8 @@ import java.util.List;
 
 public class PantsJpsUtil {
   public static boolean isGenTarget(@NotNull String address) {
-    return StringUtil.startsWithIgnoreCase(address, ".pants.d");
+    return StringUtil.startsWithIgnoreCase(address, ".pants.d") ||
+           StringUtil.startsWithIgnoreCase(address, PantsConstants.PANTS_PROJECT_MODULE_ID_PREFIX);
   }
 
   public static boolean containsPantsModules(Collection<JpsModule> modules) {
