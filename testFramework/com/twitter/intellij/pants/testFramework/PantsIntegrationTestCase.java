@@ -298,13 +298,7 @@ public abstract class PantsIntegrationTestCase extends ExternalSystemImportingTe
         }
       }
     );
-    if (PantsSettings.getInstance(myProject).isCompileWithIntellij()) {
-      final String lastMessage = ContainerUtil.getLastItem(rawMessages);
-      // if lastMessage is null there were no changes to compile
-      if (lastMessage != null) {
-        assertTrue(StringUtil.containsIgnoreCase(lastMessage, "Compilation completed successfully"));
-      }
-    } else {
+    if (!PantsSettings.getInstance(myProject).isCompileWithIntellij()) {
       final String noChanges = "pants: No changes to compile.";
       final String compiledSuccessfully = "pants: SUCCESS";
       assertTrue("Compilation wasn't successful!", rawMessages.contains(noChanges) || rawMessages.contains(compiledSuccessfully));
