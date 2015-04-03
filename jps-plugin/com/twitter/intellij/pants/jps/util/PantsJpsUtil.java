@@ -3,6 +3,7 @@
 
 package com.twitter.intellij.pants.jps.util;
 
+import com.intellij.openapi.util.Condition;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.util.Function;
 import com.intellij.util.containers.ContainerUtil;
@@ -16,6 +17,18 @@ import java.util.Collection;
 import java.util.List;
 
 public class PantsJpsUtil {
+  public static boolean containsGenTarget(@NotNull Collection<String> addresses) {
+    return ContainerUtil.exists(
+      addresses,
+      new Condition<String>() {
+        @Override
+        public boolean value(String value) {
+          return isGenTarget(value);
+        }
+      }
+    );
+  }
+
   public static boolean isGenTarget(@NotNull String address) {
     return StringUtil.startsWithIgnoreCase(address, ".pants.d") ||
            StringUtil.startsWithIgnoreCase(address, PantsConstants.PANTS_PROJECT_MODULE_ID_PREFIX);

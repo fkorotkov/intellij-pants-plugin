@@ -3,7 +3,6 @@
 
 package com.twitter.intellij.pants.jps.incremental.model;
 
-import com.intellij.util.Function;
 import com.intellij.util.containers.ContainerUtil;
 import com.twitter.intellij.pants.jps.incremental.serialization.PantsJpsProjectExtensionSerializer;
 import com.twitter.intellij.pants.jps.util.PantsJpsUtil;
@@ -16,6 +15,7 @@ import org.jetbrains.jps.model.JpsProject;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class PantsBuildTargetType extends BuildTargetType<PantsBuildTarget> {
   public static PantsBuildTargetType INSTANCE = new PantsBuildTargetType();
@@ -35,15 +35,12 @@ public class PantsBuildTargetType extends BuildTargetType<PantsBuildTarget> {
     final JpsProject jpsProject = model.getProject();
     final JpsPantsProjectExtension pantsProjectExtension = PantsJpsProjectExtensionSerializer.findPantsProjectExtension(jpsProject);
     final boolean compileWithPants = pantsProjectExtension != null && !pantsProjectExtension.isCompileWithIntellij();
-    final List<String> allTargetAddresses = ContainerUtil.map(
-      PantsJpsUtil.findPantsModules(jpsProject.getModules()),
-      new Function<JpsPantsModuleExtension, String>() {
-        @Override
-        public String fun(JpsPantsModuleExtension extension) {
-          return extension.getTargetAddress();
-        }
-      }
-    );
+
+    final Set<String> allTargetAddresses = new HashSet<String>();
+    for (JpsPantsModuleExtension moduleExtension : PantsJpsUtil.findPantsModules(jpsProject.getModules())) {
+      allTargetAddresses.addAll(moduleExtension.getTargetAddresses());
+    }
+
     return compileWithPants && PantsJpsUtil.containsPantsModules(jpsProject.getModules()) ?
            new PantsBuildTarget(pantsProjectExtension.getTargetPath(), new HashSet<String>(allTargetAddresses)) : null;
   }

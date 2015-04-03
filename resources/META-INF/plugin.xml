@@ -136,5 +136,6 @@
                 factoryClass="com.twitter.intellij.pants.ui.PantsToolWindowFactory"
                 conditionClass="com.twitter.intellij.pants.ui.PantsToolWindowFactoryCondition"/>
     <externalSystemNotificationExtension implementation="com.twitter.intellij.pants.notification.PantsNotificationCustomizer"/>
+    <externalProjectDataService implementation="com.twitter.intellij.pants.service.project.metadata.TargetMetadataService"/>
   </extensions>
 </idea-plugin>

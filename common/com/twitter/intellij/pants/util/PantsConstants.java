@@ -32,6 +32,8 @@ public class PantsConstants {
   protected static final String ANTLR_4_EXT = "g4";
   protected static final String PROTOBUF_EXT = "proto";
 
+  public static final String PANTS_TARGET_ADDRESSES_KEY = "pants.target.addresses";
+
   public static Set<String> SUPPORTED_TARGET_TYPES = new THashSet<String>(
     Arrays.asList(
       "android_binary", "android_resources", "annotation_processor", "artifact", "artifactory", "bundle", "consume_thrift_libraries",

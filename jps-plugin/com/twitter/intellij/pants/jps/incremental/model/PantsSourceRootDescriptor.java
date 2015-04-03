@@ -5,7 +5,6 @@ package com.twitter.intellij.pants.jps.incremental.model;
 
 import com.intellij.openapi.util.io.FileUtil;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.jetbrains.jps.builders.BuildRootDescriptor;
 
 import java.io.File;
@@ -17,13 +16,13 @@ public class PantsSourceRootDescriptor extends BuildRootDescriptor {
   public final boolean myGeneratedSources;
   @NotNull
   private final Set<File> myExcludes;
-  private final String myTargetAddress;
+  private final Set<String> myTargetAddress;
   @NotNull
   private final PantsBuildTarget myTarget;
 
   public PantsSourceRootDescriptor(
     @NotNull PantsBuildTarget target,
-    @Nullable String targetAddress,
+    @NotNull Set<String> targetAddress,
     @NotNull File root,
     boolean isGenerated,
     @NotNull Set<File> excludes
@@ -35,8 +34,8 @@ public class PantsSourceRootDescriptor extends BuildRootDescriptor {
     myExcludes = excludes;
   }
 
-  @Nullable
-  public String getTargetAddress() {
+  @NotNull
+  public Set<String> getTargetAddresses() {
     return myTargetAddress;
   }
 

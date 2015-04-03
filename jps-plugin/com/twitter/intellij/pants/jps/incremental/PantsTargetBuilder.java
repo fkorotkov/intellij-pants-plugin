@@ -146,8 +146,7 @@ public class PantsTargetBuilder extends TargetBuilder<PantsSourceRootDescriptor,
       new FileProcessor<PantsSourceRootDescriptor, PantsBuildTarget>() {
         @Override
         public boolean apply(PantsBuildTarget target, File file, PantsSourceRootDescriptor root) throws IOException {
-          final String targetAddress = root.getTargetAddress();
-          if (targetAddress != null && !PantsJpsUtil.isGenTarget(targetAddress)) {
+          if (!PantsJpsUtil.containsGenTarget(root.getTargetAddresses())) {
             hasDirtyTargets.set(true);
             return false;
           }
@@ -181,10 +180,7 @@ public class PantsTargetBuilder extends TargetBuilder<PantsSourceRootDescriptor,
       new FileProcessor<PantsSourceRootDescriptor, PantsBuildTarget>() {
         @Override
         public boolean apply(PantsBuildTarget target, File file, PantsSourceRootDescriptor root) throws IOException {
-          final String targetAddress = root.getTargetAddress();
-          if (targetAddress != null) {
-            addresses.add(targetAddress);
-          }
+          addresses.addAll(root.getTargetAddresses());
           return true;
         }
       }
