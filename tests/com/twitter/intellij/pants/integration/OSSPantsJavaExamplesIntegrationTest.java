@@ -33,7 +33,6 @@ public class OSSPantsJavaExamplesIntegrationTest extends OSSPantsIntegrationTest
     assertModules(
       "examples_src_java_org_pantsbuild_example_antlr3_antlr3",
       "examples_src_antlr_org_pantsbuild_example_exp_exp_antlr3",
-      "_antlr-3.4",
       ".pants.d_gen_antlr_antlr3_gen-java_examples_src_antlr_examples.src.antlr.org.pantsbuild.example.exp.exp_antlr3"
     );
 
@@ -49,7 +48,6 @@ public class OSSPantsJavaExamplesIntegrationTest extends OSSPantsIntegrationTest
     assertModules(
       "examples_src_java_org_pantsbuild_example_antlr4_antlr4",
       "examples_src_antlr_org_pantsbuild_example_exp_exp_antlr4",
-      "_antlr-4",
       ".pants.d_gen_antlr_antlr4_gen-java_examples_src_antlr_examples.src.antlr.org.pantsbuild.example.exp.exp_antlr4"
     );
 
