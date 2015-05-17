@@ -55,7 +55,7 @@ fi
 if [ ! -d .cache/jdk-libs ]; then
   echo "Copying JDK libs..."
   mkdir -p .cache/jdk-libs
-  cp "$JAVA_HOME/lib/sa-jdi.jar" "$JAVA_HOME/lib/tools.jar" .cache/intellij/jdk-libs
+  cp "$JAVA_HOME/lib/sa-jdi.jar" "$JAVA_HOME/lib/tools.jar" .cache/jdk-libs
 fi
 
 echo "Bootstrapping Pants..."
