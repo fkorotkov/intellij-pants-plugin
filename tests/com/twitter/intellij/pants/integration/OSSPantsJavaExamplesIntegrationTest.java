@@ -90,7 +90,6 @@ public class OSSPantsJavaExamplesIntegrationTest extends OSSPantsIntegrationTest
       "examples_src_java_org_pantsbuild_example_hello_simple_simple",
       "examples_src_java_org_pantsbuild_example_hello_main_main",
       "examples_src_java_org_pantsbuild_example_hello_greet_greet",
-      "3rdparty_junit",
       "examples_src_scala_org_pantsbuild_example_hello_welcome_welcome", // dependee
       "examples_tests_java_org_pantsbuild_example_hello_greet_greet"     // dependee
     );
@@ -124,7 +123,6 @@ public class OSSPantsJavaExamplesIntegrationTest extends OSSPantsIntegrationTest
     assertModules(
       "examples_src_java_org_pantsbuild_example_protobuf_distance_distance",
       "examples_src_protobuf_org_pantsbuild_example_distance_distance",
-      "3rdparty_protobuf-java",
       ".pants.d_gen_protoc_gen-java_examples.src.protobuf.org.pantsbuild.example.distance.distance"
     );
 
