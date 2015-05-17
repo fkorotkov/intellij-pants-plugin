@@ -14,7 +14,7 @@ if [[ $IJ_ULTIMATE == "true" ]]; then
   IJ_BUILD="IU-${IJ_VERSION}"
 fi
 
-mkdir -p .cache/intellij
+mkdir -p .cache/intellij/$IJ_BUILD_NUMBER
 
 if [ ! -d .cache/intellij/$IJ_BUILD_NUMBER/idea-dist ]; then
   echo "Loading $IJ_BUILD..."
