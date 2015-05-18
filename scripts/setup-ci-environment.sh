@@ -2,7 +2,7 @@
 
 set -e
 
-CWD=$(pwd)
+source scripts/prepare-ci-environment.sh
 
 # we will use Community ids to download plugins.
 SCALA_PLUGIN_ID="org.intellij.scala"
