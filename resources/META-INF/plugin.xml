@@ -157,6 +157,7 @@
         implementation="com.twitter.intellij.pants.service.project.wizard.PantsProjectImportProvider"/>
     <projectImportBuilder
         implementation="com.twitter.intellij.pants.service.project.wizard.PantsProjectImportBuilder"/>
+    <moduleBuilder builderClass="com.twitter.intellij.pants.service.project.wizard.PantsModuleBuilder"/>
 
     <runConfigurationExtension implementation="com.twitter.intellij.pants.execution.PantsClasspathRunConfigurationExtension"/>
     <configurationProducer implementation="com.twitter.intellij.pants.execution.PantsRuntimeConfigurationProducer"/>
